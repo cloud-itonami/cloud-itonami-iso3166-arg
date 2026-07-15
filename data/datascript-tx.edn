@@ -1,0 +1,34 @@
+;; data/datascript-tx.edn — DataScript tx-data derived from src/statute/facts.cljc
+;; `statute.facts/catalog` (ADR-2607141700 Wave 0). Same shape as sibling files.
+
+[#:statute{:id "arg.ley-general-de-sociedades-19550"
+           :title "Ley General de Sociedades N° 19.550 (Ley de Sociedades Comerciales)"
+           :jurisdiction "ARG"
+           :kind :law
+           :law-number "Ley N° 19.550"
+           :url "https://servicios.infoleg.gob.ar/infolegInternet/anexos/25000-29999/25553/texact.htm"
+           :url-provenance :official-infoleg-gob-ar
+           :enacted-date "1972-04-03"
+           :last-revised-date "2018-06-18"
+           :retrieved-at "2026-07-15"
+           :topic [:corporate-governance :incorporation]}
+ #:statute{:id "arg.ley-habeas-data-25326"
+           :title "Ley N° 25.326 (Protección de los Datos Personales / Habeas Data)"
+           :jurisdiction "ARG"
+           :kind :law
+           :law-number "Ley N° 25.326"
+           :url "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=64790"
+           :url-provenance :official-infoleg-gob-ar
+           :enacted-date "2000-10-04"
+           :retrieved-at "2026-07-15"
+           :topic [:data-protection :privacy]}
+ #:statute{:id "arg.ley-contrato-trabajo-20744"
+           :title "Ley N° 20.744 (Ley de Contrato de Trabajo)"
+           :jurisdiction "ARG"
+           :kind :law
+           :law-number "Ley N° 20.744"
+           :url "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=25552"
+           :url-provenance :official-infoleg-gob-ar
+           :enacted-date "1974-09-05"
+           :retrieved-at "2026-07-15"
+           :topic [:labor :employment]}]
