@@ -7,4 +7,32 @@
  :itonami.blueprint/governor :market-entry-compliance-governor
  :itonami.blueprint/robotics false
  :itonami.blueprint/required-technologies [:identity :forms :dmn :bpmn :audit-ledger]
- :itonami.blueprint/status :public-oss}
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/maturity :implemented
+ :itonami.blueprint/implemented-slice
+ "src/marketentry/* (langgraph-clj StateGraph actor, compiled via
+ `operation/build` -> `g/state-graph` -> `g/compile-graph` with
+ `interrupt-before #{:request-approval}`): facts.cljc (official
+ spec-basis catalog), governor.cljc (Market-Entry Compliance
+ Governor -- spec-basis HARD check, evidence-incomplete HARD check,
+ `:ar-entity-missing` HARD check independently verifying
+ `:has-ar-entity?` when `:requires-ar-entity?` is true -- the
+ flagship new check for this vertical, grounded in the CUIT-bearing
+ Argentina-resident-representative requirement typical of COMPR.AR
+ federal tenders --, engagement-fee-mismatch independent recompute,
+ `:cuit-unverified` HARD check, confidence-floor/actuation gate, plus
+ double-draft/double-submit guards), store.cljc (MemStore +
+ DatomicStore via `io.github.kotoba-lang/langchain-store`
+ (`ls/enc`/`ls/dec*`/`ls/read-stream`/`ls/append-blob!`) instead of a
+ hand-rolled EDN-blob codec), registry.cljc (pure-function
+ filing-draft/filing-submit record construction + fee recompute),
+ marketentryllm.cljc (mock MarketEntry Advisor), operation.cljc
+ (intake -> advise -> govern -> decide ->
+ [request-approval ->] commit/hold StateGraph, `store/append-ledger!`
+ called from both the `:commit` and `:hold` nodes), phase.cljc (0->3
+ rollout, `:filing/draft`/`:filing/submit` permanently excluded from
+ every phase's `:auto` set). 33 tests / 107 assertions passing
+ (governor contract + store parity + facts + phase + registry, plus
+ this repo's separate `statute` domain namespace, left untouched),
+ clj-kondo clean (0 errors, 10 non-fatal unused-binding/unused-require
+ warnings, all pre-existing and unrelated to this change)."}
